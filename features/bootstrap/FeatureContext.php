@@ -78,4 +78,60 @@ class FeatureContext extends BehatContext
         assertSame($this->order, $this->invoice->$getter());
     }
 
+    /**
+     * @Given /^I have created an invoice due in "([^"]*)" days$/
+     */
+    public function iHaveCreatedAnInvoiceDueInDays($argument1)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Given /^I have created an invoice due in "([^"]*)" days that has been paid$/
+     */
+    public function iHaveCreatedAnInvoiceDueInDaysThatHasBeenPaid($argument1)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @When /^I ask for invoices past due by at least "([^"]*)" days$/
+     */
+    public function iAskForInvoicesPastDueByAtLeastDays($argument1)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then /^I should receive the invoice due in "([^"]*)" days$/
+     */
+    public function iShouldReceiveTheInvoiceDueInDays($argument1)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Given /^I should not receive the invoice due in "([^"]*)" days$/
+     */
+    public function iShouldNotReceiveTheInvoiceDueInDays($argument1)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Given /^the invoice due in "([^"]*)" days has already been sent at the "([^"]*)" day mark$/
+     */
+    public function theInvoiceDueInDaysHasAlreadyBeenSentAtTheDayMark($argument1, $argument2)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @When /^I ask for invoices due in "([^"]*)" days$/
+     */
+    public function iAskForInvoicesDueInDays($argument1)
+    {
+        throw new PendingException();
+    }
+
 }
