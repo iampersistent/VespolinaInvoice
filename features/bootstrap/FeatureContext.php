@@ -30,7 +30,7 @@ use Vespolina\Invoice\InvoiceManager;
  */
 class FeatureContext extends BehatContext
 {
-    protected $invoice;
+    protected $invoices;
     protected $order;
     protected $manager;
 
@@ -57,8 +57,8 @@ class FeatureContext extends BehatContext
      */
     public function iCreateAnInvoiceWithTheOrder()
     {
-        $this->invoice = $this->manager->createInvoice();
-        $this->invoice->setOrder($this->order);
+        $this->invoices[0] = $this->manager->createInvoice();
+        $this->invoices[0]->setOrder($this->order);
     }
 
     /**
@@ -66,7 +66,7 @@ class FeatureContext extends BehatContext
      */
     public function iShouldReceiveAnInvoice()
     {
-        assertInstanceOf('Vespolina\Entity\InvoiceInterface', $this->invoice);
+        assertInstanceOf('Vespolina\Entity\InvoiceInterface', $this->invoices[0]);
     }
 
     /**
@@ -75,15 +75,18 @@ class FeatureContext extends BehatContext
     public function theInvoiceShouldContainThe($argument1)
     {
         $getter = 'get' . ucfirst(strtolower($argument1));
-        assertSame($this->order, $this->invoice->$getter());
+        assertSame($this->order, $this->invoices[0]->$getter());
     }
 
     /**
      * @Given /^I have created an invoice due in "([^"]*)" days$/
      */
-    public function iHaveCreatedAnInvoiceDueInDays($argument1)
+    public function iHaveCreatedAnInvoiceDueInDays($days)
     {
-        throw new PendingException();
+        $this->invoices[$days] = $this->manager->createInvoice();
+        $dueDate = new \DateTime();
+        $dueDate->add(new DateInterval(sprintf('P%dD', $days)));
+        $this->invoices[$days]->setDueDate($dueDate);
     }
 
     /**
